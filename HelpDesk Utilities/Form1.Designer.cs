@@ -36,8 +36,8 @@
             treeNode4,
             treeNode5,
             treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("TestChildNode");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("TestRootNode", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Run MSPaint");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Sanity Node", new System.Windows.Forms.TreeNode[] {
             treeNode8});
             System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("TestChildNode");
             System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("TestRootNode", new System.Windows.Forms.TreeNode[] {
@@ -47,9 +47,9 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button_attemptFixes = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +61,7 @@
             this.treeView1.Location = new System.Drawing.Point(12, 27);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Node7";
+            treeNode1.Tag = "ResetWinsockStack.ps1";
             treeNode1.Text = "Reset Winsock Stack";
             treeNode2.Name = "Node8";
             treeNode2.Text = "Reset TCP/IP Stack";
@@ -74,13 +75,14 @@
             treeNode6.Text = "Ethernet";
             treeNode7.Name = "Node0";
             treeNode7.Text = "Network Issues";
-            treeNode8.Name = "Node5";
-            treeNode8.Text = "TestChildNode";
-            treeNode9.Name = "Node3";
-            treeNode9.Text = "TestRootNode";
-            treeNode10.Name = "Node6";
+            treeNode8.Name = "Node6";
+            treeNode8.Tag = "MSPaint.ps1";
+            treeNode8.Text = "Run MSPaint";
+            treeNode9.Name = "Node4";
+            treeNode9.Text = "Sanity Node";
+            treeNode10.Name = "Node5";
             treeNode10.Text = "TestChildNode";
-            treeNode11.Name = "Node4";
+            treeNode11.Name = "Node3";
             treeNode11.Text = "TestRootNode";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode7,
@@ -88,6 +90,7 @@
             treeNode11});
             this.treeView1.Size = new System.Drawing.Size(270, 329);
             this.treeView1.TabIndex = 0;
+            this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
             // 
             // menuStrip1
             // 
@@ -121,15 +124,22 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // button1
+            // aboutToolStripMenuItem
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(12, 362);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(270, 28);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Attempt Selected Fixes";
-            this.button1.UseVisualStyleBackColor = true;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // button_attemptFixes
+            // 
+            this.button_attemptFixes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_attemptFixes.Location = new System.Drawing.Point(12, 362);
+            this.button_attemptFixes.Name = "button_attemptFixes";
+            this.button_attemptFixes.Size = new System.Drawing.Size(270, 28);
+            this.button_attemptFixes.TabIndex = 2;
+            this.button_attemptFixes.Text = "Attempt Selected Fixes";
+            this.button_attemptFixes.UseVisualStyleBackColor = true;
+            this.button_attemptFixes.Click += new System.EventHandler(this.button_attemptFixesClick);
             // 
             // richTextBox1
             // 
@@ -142,19 +152,13 @@
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "Log of actions will go here";
             // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 402);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_attemptFixes);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
@@ -173,7 +177,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_attemptFixes;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
