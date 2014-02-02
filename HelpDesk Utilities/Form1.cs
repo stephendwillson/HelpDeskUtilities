@@ -16,12 +16,15 @@ namespace HelpDesk_Utilities {
         #region Globals
         private bool updatingTreeView;
         BackgroundWorker scriptRunner = new BackgroundWorker();
+        private bool isScriptRunning = false;
         private string scriptDirectory =
             @"C:\Users\swillson\Documents\Visual Studio 2012\Projects\HelpDeskUtilities\PSScripts\";
         #endregion
        
         public Form1() {
             InitializeComponent();
+
+            Logger log = new Logger(this);
             
             scriptRunner.DoWork += scriptRunner_DoWork;
             scriptRunner.RunWorkerCompleted += scriptRunner_RunWorkerCompleted;
@@ -92,6 +95,7 @@ namespace HelpDesk_Utilities {
             foreach (TreeNode node in treeNodeCollection) {
 
                 if (node.Checked && node.Tag != null) {
+                    Logger.Log("Beginning script " + node.Tag + ".");
                     scriptRunner.RunWorkerAsync(node.Tag);
                 }
                 
@@ -107,6 +111,8 @@ namespace HelpDesk_Utilities {
         private string RunScript(string scriptText) {
             // create Powershell runspace
             Runspace runspace = RunspaceFactory.CreateRunspace();
+
+            isScriptRunning = true;
 
             // open it
             runspace.Open();
@@ -130,6 +136,8 @@ namespace HelpDesk_Utilities {
 
             // close the runspace
             runspace.Close();
+
+            isScriptRunning = false;
 
             // convert the script result into a single string
             StringBuilder stringBuilder = new StringBuilder();
@@ -184,5 +192,45 @@ namespace HelpDesk_Utilities {
             updatingTreeView = false;
         }
         #endregion
+
+        #region Exit Behavior
+        //Clean up this method
+        /// <summary>
+        /// This will run when Exit is selected from the File menu. It will prompt for confirmation if a script is currently running.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e">Pass in FormClosingEventArgs if necessary.</param>
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
+
+            FormClosingEventArgs eve = null;
+            if(e != null)
+                eve = e as FormClosingEventArgs;
+
+            if (isScriptRunning) {
+                DialogResult quitResult = MessageBox.Show("A fix is currently running. Are you sure you want to quit?", "Oops!", MessageBoxButtons.YesNo);
+
+                if (quitResult == DialogResult.No) {
+                    if(eve != null)
+                        eve.Cancel = true;
+                    return;
+                }
+            }
+            Environment.Exit(0);
+        }
+
+        /// <summary>
+        /// Function to run when application is closed. Will prompt for confirmation if script is running. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+
+            exitToolStripMenuItem_Click(sender, e);
+        }
+        #endregion
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
+
+        }
     }
 }
