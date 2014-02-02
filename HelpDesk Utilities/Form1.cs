@@ -19,10 +19,10 @@ namespace HelpDesk_Utilities {
         private string scriptDirectory =
             @"C:\Users\swillson\Documents\Visual Studio 2012\Projects\HelpDeskUtilities\PSScripts\";
         #endregion
-
+       
         public Form1() {
             InitializeComponent();
-
+            
             scriptRunner.DoWork += scriptRunner_DoWork;
             scriptRunner.RunWorkerCompleted += scriptRunner_RunWorkerCompleted;
         }
@@ -67,7 +67,7 @@ namespace HelpDesk_Utilities {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button_attemptFixesClick(object sender, EventArgs e) {
-
+            
             ParameterizedThreadStart start = new ParameterizedThreadStart(RunCheckedItems);
             Thread thread = new Thread(start);
             thread.Start(treeView1.Nodes);
