@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-
 
 namespace HelpDesk_Utilities {
     public partial class Form1 : Form {
@@ -35,9 +33,9 @@ namespace HelpDesk_Utilities {
         /// Called whenever scriptRunner_DoWork is completed.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="e">e.Result.ToString() will be the Tag associated with any given script</param>
         private void scriptRunner_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            Debug.WriteLine(DateTime.Now.ToLocalTime() + "Mmmmmmwork completedmmmmmmm.");
+            Logger.Log("Finished script " + e.Result.ToString() + ".");
         }
 
         /// <summary>
@@ -45,7 +43,7 @@ namespace HelpDesk_Utilities {
         /// it along to RunScript(), which does the actual heavy lifting.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="e">e.Argument.ToString will be the script name (script.ps1)</param>
         private void scriptRunner_DoWork(object sender, DoWorkEventArgs e) {
 
             string scriptPath = scriptDirectory + e.Argument.ToString();
@@ -58,7 +56,10 @@ namespace HelpDesk_Utilities {
 
             string result = RunScript(myString);
 
-            Debug.WriteLine("begin (no text will print, need more understanding of return info): " + result);
+            if (!String.IsNullOrEmpty(result))
+                Logger.Log(result);
+
+            e.Result = e.Argument.ToString();
         }
         #endregion
 
@@ -89,14 +90,14 @@ namespace HelpDesk_Utilities {
 
             if (treeNodeCollection.Count == 0)
                 return;
-
-            while (scriptRunner.IsBusy) ;
-
+                        
             foreach (TreeNode node in treeNodeCollection) {
 
                 if (node.Checked && node.Tag != null) {
+                    while (scriptRunner.IsBusy) ;
                     Logger.Log("Beginning script " + node.Tag + ".");
                     scriptRunner.RunWorkerAsync(node.Tag);
+
                 }
                 
                 RunCheckedItems(node.Nodes);
@@ -109,43 +110,48 @@ namespace HelpDesk_Utilities {
         /// <param name="scriptText">The full text of the script to be run</param>
         /// <returns>Returns any relevant "finish" data from script, as string for now--to be changed</returns>
         private string RunScript(string scriptText) {
-            // create Powershell runspace
-            Runspace runspace = RunspaceFactory.CreateRunspace();
 
-            isScriptRunning = true;
+            try {
+                // create Powershell runspace
+                Runspace runspace = RunspaceFactory.CreateRunspace();
 
-            // open it
-            runspace.Open();
+                isScriptRunning = true;
 
-            // create a pipeline and feed it the script text
-            Pipeline pipeline = runspace.CreatePipeline();
-            pipeline.Commands.AddScript(scriptText);
+                // open it
+                runspace.Open();
 
-            // add an extra command to transform the script
-            // output objects into nicely formatted strings
+                // create a pipeline and feed it the script text
+                Pipeline pipeline = runspace.CreatePipeline();
+                pipeline.Commands.AddScript(scriptText);
 
-            // remove this line to get the actual objects
-            // that the script returns. For example, the script
+                // add an extra command to transform the script
+                // output objects into nicely formatted strings
+                pipeline.Commands.Add("Out-String");
 
-            // "Get-Process" returns a collection
-            // of System.Diagnostics.Process instances.
-            pipeline.Commands.Add("Out-String");
+                // execute the script
+                Collection<PSObject> results = pipeline.Invoke();
 
-            // execute the script
-            Collection<PSObject> results = pipeline.Invoke();
+                // close the runspace
+                runspace.Close();
 
-            // close the runspace
-            runspace.Close();
+                if (pipeline.Error.Count > 0) {
+                    Logger.Log("Error: " + pipeline.Error.Read());
+                }
 
-            isScriptRunning = false;
+                isScriptRunning = false;
 
-            // convert the script result into a single string
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (PSObject obj in results) {
-                stringBuilder.AppendLine(obj.ToString());
+                // convert the script result into a single string
+                StringBuilder stringBuilder = new StringBuilder();
+                foreach (PSObject obj in results) {
+                    stringBuilder.AppendLine(obj.ToString());
+                }
+
+                return stringBuilder.ToString();
             }
-
-            return stringBuilder.ToString();
+            catch (Exception ex) {
+                isScriptRunning = false;
+                return "Exception caught while invoking Powershell script: " + ex.Message.ToString();
+            }
         }
         #endregion
 

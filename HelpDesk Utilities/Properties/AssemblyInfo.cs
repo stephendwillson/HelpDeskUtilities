@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("HelpDesk Utilities")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("NMU Academic Computing HelpDesk")]
 [assembly: AssemblyProduct("HelpDesk Utilities")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
@@ -35,6 +35,6 @@ using System.Runtime.InteropServices;
 // Convention for this project: 
 //      AssemblyVersion/AssemblyFileVersion [major.minor.revision.build]
 //      AssemblyInformationalVersion [major.minor customer_description_as_string]
-[assembly: AssemblyVersion("0.1.3.*")]
-[assembly: AssemblyFileVersion("0.1.3.*")]
+[assembly: AssemblyVersion("0.3.0.*")]
+[assembly: AssemblyFileVersion("0.3.0.*")]
 [assembly: AssemblyInformationalVersion("0.1 Alpha")]

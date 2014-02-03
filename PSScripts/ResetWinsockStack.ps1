@@ -1,1 +1,1 @@
-Start-Sleep -s 2
+netsh winsock reset
