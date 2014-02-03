@@ -16,7 +16,8 @@ namespace HelpDesk_Utilities {
         BackgroundWorker scriptRunner = new BackgroundWorker();
         private bool isScriptRunning = false;
         private string scriptDirectory =
-            @"C:\Users\swillson\Documents\Visual Studio 2012\Projects\HelpDeskUtilities\PSScripts\";
+            @"C:\Users\aramirez\Documents\GitHub\HelpDeskUtilities\PSScripts\";
+           // @"C:\Users\swillson\Documents\Visual Studio 2012\Projects\HelpDeskUtilities\PSScripts\";
         #endregion
        
         public Form1() {
