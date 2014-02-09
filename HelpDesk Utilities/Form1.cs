@@ -15,9 +15,11 @@ namespace HelpDesk_Utilities {
         private bool updatingTreeView;
         BackgroundWorker scriptRunner = new BackgroundWorker();
         private bool isScriptRunning = false;
+
         private string scriptDirectory =
-            @"C:\Users\aramirez\Documents\GitHub\HelpDeskUtilities\PSScripts\";
-           // @"C:\Users\swillson\Documents\Visual Studio 2012\Projects\HelpDeskUtilities\PSScripts\";
+            //Application.StartupPath + @"\PSScripts\"; //USE THIS FOR RELEASE BUILDS
+            //@"C:\Users\aramirez\Documents\GitHub\HelpDeskUtilities\PSScripts\"; //DEBUG BUILD
+            @"C:\Users\swillson\Documents\Visual Studio 2012\Projects\HelpDeskUtilities\PSScripts\"; //DEBUG BUILD
         #endregion
        
         public Form1() {
@@ -31,15 +33,6 @@ namespace HelpDesk_Utilities {
 
         #region BackgroundWorker Functions
         /// <summary>
-        /// Called whenever scriptRunner_DoWork is completed.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e">e.Result.ToString() will be the Tag associated with any given script</param>
-        private void scriptRunner_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            Logger.Log("Finished script " + e.Result.ToString() + ".");
-        }
-
-        /// <summary>
         /// Read in lines of text from specified script file to a string and pass 
         /// it along to RunScript(), which does the actual heavy lifting.
         /// </summary>
@@ -47,20 +40,43 @@ namespace HelpDesk_Utilities {
         /// <param name="e">e.Argument.ToString will be the script name (script.ps1)</param>
         private void scriptRunner_DoWork(object sender, DoWorkEventArgs e) {
 
-            string scriptPath = scriptDirectory + e.Argument.ToString();
+            string scriptPath = "";
+            try {
+                scriptPath = scriptDirectory + e.Argument.ToString();
 
-            StreamReader myFile =
-                new StreamReader(scriptPath);
-            string myString = myFile.ReadToEnd();
+                StreamReader myFile =
+                    new StreamReader(scriptPath);
+                string myString = myFile.ReadToEnd();
 
-            myFile.Close();
+                myFile.Close();
 
-            string result = RunScript(myString);
+                string result = RunScript(myString);
 
-            if (!String.IsNullOrEmpty(result))
-                Logger.Log(result);
+                if (!String.IsNullOrEmpty(result))
+                    Logger.Log(result);
 
-            e.Result = e.Argument.ToString();
+                e.Result = e.Argument.ToString();
+            }
+            catch (DirectoryNotFoundException ex) {
+                e.Result = ex;
+                return;
+            }
+        }
+        /// <summary>
+        /// Called whenever scriptRunner_DoWork is completed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e">e.Result.ToString() will be the Tag associated with any given script, unless an exception is caught in doWork</param>
+        private void scriptRunner_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+
+            DirectoryNotFoundException error = e.Result as DirectoryNotFoundException;
+
+            if (e.Result is DirectoryNotFoundException) {
+                Logger.Log("Script did not run successfully: " + error.Message);
+            }
+            else {
+                Logger.Log("Finished script " + e.Result.ToString() + ".");
+            }
         }
         #endregion
 

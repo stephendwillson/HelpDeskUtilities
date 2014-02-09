@@ -39,9 +39,6 @@
             System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Run MSPaint");
             System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Sanity Node", new System.Windows.Forms.TreeNode[] {
             treeNode8});
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("TestChildNode");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("TestRootNode", new System.Windows.Forms.TreeNode[] {
-            treeNode10});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -84,14 +81,9 @@
             treeNode8.Text = "Run MSPaint";
             treeNode9.Name = "Node4";
             treeNode9.Text = "Sanity Node";
-            treeNode10.Name = "Node5";
-            treeNode10.Text = "TestChildNode";
-            treeNode11.Name = "Node3";
-            treeNode11.Text = "TestRootNode";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode7,
-            treeNode9,
-            treeNode11});
+            treeNode9});
             this.treeView1.Size = new System.Drawing.Size(270, 329);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);

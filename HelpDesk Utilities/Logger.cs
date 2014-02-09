@@ -24,6 +24,9 @@ namespace HelpDesk_Utilities {
 
             string time = DateTime.Now.ToString() + ": ";
             form.richTextBox_logWindow.AppendText(time + logMessage + Environment.NewLine);
+
+            form.richTextBox_logWindow.SelectionStart = form.richTextBox_logWindow.Text.Length;
+            form.richTextBox_logWindow.ScrollToCaret();
         }
     }
 }
