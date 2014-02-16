@@ -1,0 +1,66 @@
+﻿Networking
+	General
+		Hardware Switch Enabled
+			Make sure this is on before doing anything else
+		Check for active profiles - should be "NMU" at the HelpDesk for testing
+		Validate IP
+				10.x.x.x
+					Show "Not registered"
+					Launch IE on command line w/register.nmu.edu as argument
+				169.x.x.x
+					? Not sure - can't get an IP, start running other fixes
+				35.x.x.x, 192.x.x.x, 172.x.x.x, 204.x.x.x, 207.x.x.x
+					Valid IP, move on
+		Check for static IP - doable?
+		Services
+			DHCP
+			DNS
+	WiFi
+		Windows 7
+			Validate software RF-kill disabled
+		Windows 8
+			Validate Airplane Mode
+	WiMax
+		[Dis/En]able WiMax adaptor
+		AutoIT Scripts
+			Reset all profiles back to default
+
+	Ethernet
+
+Malware
+	rKill
+		Doable?
+	MBAM
+		Install
+		Disable Pro trial
+		Update
+			Validate networking stuffs first
+		Run Quick Scan only
+		Remove found items
+		Reboot		
+
+General/Other
+	Check for full hard drive
+		Generally too full? What percent to cutoff?
+			90% full/10% free space, look into KAV/WRT folders to check size
+		Kaspersky
+			KAV created over Xmb of log files, delete them
+		Intel WRT/WiMax
+			WRT created over Xmb of log files, delete them
+	Activate Windows/Office
+		Validate time/date
+		Office = run .vbs
+		Windows = run slmgr.vbs /ipk 
+	Quick reboot
+	Run Windows update
+	CCleaner
+	Validate current/max battery capacity
+	Tools involving reboot - doable or not?
+		Boot into Linux
+		Run DFT
+		Run Memtest +86
+	Lower priority tasks
+		Twist fixes
+		Add IPv6 capabilities to networking section
+		Add LRC Laser
+		Add Jacobetti printer

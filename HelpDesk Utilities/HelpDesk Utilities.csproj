@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FixIcon.ico" />
+    <Content Include="Goals.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

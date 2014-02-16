@@ -92,7 +92,6 @@ namespace HelpDesk_Utilities {
             ParameterizedThreadStart start = new ParameterizedThreadStart(RunCheckedItems);
             Thread thread = new Thread(start);
             thread.Start(treeView1.Nodes);
-            
         }
 
         /// <summary>
