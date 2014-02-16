@@ -26,23 +26,25 @@
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Disable/Enable WiFi Adapter");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("WiFi", new System.Windows.Forms.TreeNode[] {
             treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("WiMax");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Ethernet");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Reset TCP/IP Stack");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Reset Winsock Stack");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("General", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Network Issues", new System.Windows.Forms.TreeNode[] {
-            treeNode2,
-            treeNode3,
-            treeNode4,
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Disable/Enable WiMax Adaptor");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("WiMax", new System.Windows.Forms.TreeNode[] {
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Ethernet");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Reset TCP/IP Stack");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Reset Winsock Stack");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("General", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
             treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Malware");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("General/Other");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Run MSPaint");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Sanity Node", new System.Windows.Forms.TreeNode[] {
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Network Issues", new System.Windows.Forms.TreeNode[] {
+            treeNode2,
+            treeNode4,
+            treeNode5,
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Malware");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("General/Other");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Run MSPaint");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Sanity Node", new System.Windows.Forms.TreeNode[] {
+            treeNode12});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -68,34 +70,37 @@
             treeNode1.Text = "Disable/Enable WiFi Adapter";
             treeNode2.Name = "Node1";
             treeNode2.Text = "WiFi";
-            treeNode3.Name = "Node2";
-            treeNode3.Text = "WiMax";
+            treeNode3.Name = "Node0";
+            treeNode3.Tag = "DisableEnableWiMaxAdaptor.ps1";
+            treeNode3.Text = "Disable/Enable WiMax Adaptor";
             treeNode4.Name = "Node2";
-            treeNode4.Text = "Ethernet";
-            treeNode5.Name = "Node8";
-            treeNode5.Tag = "ResetTCPIPStack.ps1";
-            treeNode5.Text = "Reset TCP/IP Stack";
-            treeNode6.Name = "Node7";
-            treeNode6.Tag = "ResetWinsockStack.ps1";
-            treeNode6.Text = "Reset Winsock Stack";
-            treeNode7.Name = "Node0";
-            treeNode7.Text = "General";
+            treeNode4.Text = "WiMax";
+            treeNode5.Name = "Node2";
+            treeNode5.Text = "Ethernet";
+            treeNode6.Name = "Node8";
+            treeNode6.Tag = "ResetTCPIPStack.ps1";
+            treeNode6.Text = "Reset TCP/IP Stack";
+            treeNode7.Name = "Node7";
+            treeNode7.Tag = "ResetWinsockStack.ps1";
+            treeNode7.Text = "Reset Winsock Stack";
             treeNode8.Name = "Node0";
-            treeNode8.Text = "Network Issues";
+            treeNode8.Text = "General";
             treeNode9.Name = "Node0";
-            treeNode9.Text = "Malware";
-            treeNode10.Name = "Node1";
-            treeNode10.Text = "General/Other";
-            treeNode11.Name = "Node6";
-            treeNode11.Tag = "MSPaint.ps1";
-            treeNode11.Text = "Run MSPaint";
-            treeNode12.Name = "Node4";
-            treeNode12.Text = "Sanity Node";
+            treeNode9.Text = "Network Issues";
+            treeNode10.Name = "Node0";
+            treeNode10.Text = "Malware";
+            treeNode11.Name = "Node1";
+            treeNode11.Text = "General/Other";
+            treeNode12.Name = "Node6";
+            treeNode12.Tag = "MSPaint.ps1";
+            treeNode12.Text = "Run MSPaint";
+            treeNode13.Name = "Node4";
+            treeNode13.Text = "Sanity Node";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode8,
             treeNode9,
             treeNode10,
-            treeNode12});
+            treeNode11,
+            treeNode13});
             this.treeView1.Size = new System.Drawing.Size(270, 329);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
