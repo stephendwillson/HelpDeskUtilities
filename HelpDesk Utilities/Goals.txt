@@ -21,7 +21,6 @@
 		Windows 8
 			Validate Airplane Mode
 	WiMax
-		[Dis/En]able WiMax adaptor
 		AutoIT Scripts
 			Reset all profiles back to default
 
