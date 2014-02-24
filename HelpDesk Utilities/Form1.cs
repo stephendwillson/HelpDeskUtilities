@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
@@ -12,14 +13,29 @@ namespace HelpDesk_Utilities {
     public partial class Form1 : Form {
 
         #region Globals
-        private bool updatingTreeView;
+
+        private readonly object TasksLock = new object();
+        private bool updatingTreeView = false, isScriptRunning = false;
         BackgroundWorker scriptRunner = new BackgroundWorker();
-        private bool isScriptRunning = false;
+        public delegate void InvokeDelegate();
+
+        //encapsulating fields for thread-safe goodness
+        private int taskCount = 0, tasksRun = 0;
+        public int TaskCount {
+            get { lock (TasksLock) { return taskCount; } }
+            set { lock (TasksLock) { taskCount = value; } }
+        }
+
+        public int TasksRun {
+            get { lock (TasksLock) { return tasksRun; } }
+            set { lock (TasksLock) { tasksRun = value; } }
+        }
 
         private string scriptDirectory =
             //Application.StartupPath + @"\PSScripts\"; //USE THIS FOR RELEASE BUILDS
             //@"C:\Users\aramirez\Documents\GitHub\HelpDeskUtilities\PSScripts\"; //DEBUG BUILD
             @"C:\Users\swillson\Documents\Visual Studio 2012\Projects\HelpDeskUtilities\PSScripts\"; //DEBUG BUILD
+
         #endregion
        
         public Form1() {
@@ -52,8 +68,8 @@ namespace HelpDesk_Utilities {
 
                 string result = RunScript(myString);
 
-                if (!String.IsNullOrEmpty(result))
-                    Logger.Log(result);
+                if (!String.IsNullOrWhiteSpace(result))
+                    Logger.Log(result,Color.Black,false);
 
                 e.Result = e.Argument.ToString();
             }
@@ -63,7 +79,8 @@ namespace HelpDesk_Utilities {
             }
         }
         /// <summary>
-        /// Called whenever scriptRunner_DoWork is completed.
+        /// Called whenever scriptRunner_DoWork is completed. If all scripts are finished, this will
+        /// log a notification in the RichTextBox.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e">e.Result.ToString() will be the Tag associated with any given script, unless an exception is caught in doWork</param>
@@ -72,10 +89,18 @@ namespace HelpDesk_Utilities {
             DirectoryNotFoundException error = e.Result as DirectoryNotFoundException;
 
             if (e.Result is DirectoryNotFoundException) {
-                Logger.Log("Script did not run successfully: " + error.Message);
+                Logger.Log("Script did not run successfully: " + error.Message, Color.Red, true);
             }
             else {
-                Logger.Log("Finished script " + e.Result.ToString() + ".");
+                Logger.Log("Finished script " + e.Result.ToString() + ".\n", Color.Black, true);
+            }
+
+            TasksRun++;
+
+            if (TaskCount != 0 && TasksRun == TaskCount) {
+                    Logger.Log("Done with fixes!\n", Color.Green, true);
+                    TaskCount = TasksRun = 0;
+                    button_attemptFixes.BeginInvoke(new InvokeDelegate(InvokeMethod));
             }
         }
         #endregion
@@ -88,16 +113,24 @@ namespace HelpDesk_Utilities {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button_attemptFixesClick(object sender, EventArgs e) {
-            
+
+            button_attemptFixes.Enabled = false;
+
             ParameterizedThreadStart start = new ParameterizedThreadStart(RunCheckedItems);
             Thread thread = new Thread(start);
             thread.Start(treeView1.Nodes);
+        }
+
+        public void InvokeMethod() {
+
+            button_attemptFixes.Enabled = true;
         }
 
         /// <summary>
         /// Recursively looks through nodes to find all leaf nodes that are checked
         /// and have a value for the "Tag" property. The value should be the script name.
         /// The script associated will get kicked off by BackgroundWorker scriptRunner.
+        /// The total number of tasks to be run is also calculated here.
         /// </summary>
         /// <param name="arg">The collection of nodes in the program's main TreeView</param>
         private void RunCheckedItems(Object arg) {
@@ -106,16 +139,20 @@ namespace HelpDesk_Utilities {
 
             if (treeNodeCollection.Count == 0)
                 return;
+
+            foreach (TreeNode node in treeNodeCollection) {
+                if (node.Checked && node.Tag != null)
+                    TaskCount++;
+            }
                         
             foreach (TreeNode node in treeNodeCollection) {
 
                 if (node.Checked && node.Tag != null) {
                     while (scriptRunner.IsBusy) ;
-                    Logger.Log("Beginning script " + node.Tag + ".");
+                    Logger.Log("Beginning script " + node.Tag + ".\n", Color.Black, true);
                     scriptRunner.RunWorkerAsync(node.Tag);
-
                 }
-                
+
                 RunCheckedItems(node.Nodes);
             }
         }
@@ -151,7 +188,7 @@ namespace HelpDesk_Utilities {
                 runspace.Close();
 
                 if (pipeline.Error.Count > 0) {
-                    Logger.Log("Error: " + pipeline.Error.Read());
+                    Logger.Log("Error: " + pipeline.Error.Read(), Color.Red, true);
                 }
 
                 isScriptRunning = false;
@@ -179,6 +216,7 @@ namespace HelpDesk_Utilities {
         /// <param name="node">Node being checked</param>
         /// <param name="isChecked">Node's current checked status</param>
         private void CheckChildren_ParentSelected(TreeNode node, Boolean isChecked) {
+
             foreach (TreeNode item in node.Nodes) {
                 item.Checked = isChecked;
 
@@ -194,6 +232,7 @@ namespace HelpDesk_Utilities {
         /// <param name="node">Node being checked</param>
         /// <param name="isChecked">Node's current checked status</param>
         private void SelectParents(TreeNode node, Boolean isChecked) {
+
             if (node.Parent != null) {
                 node.Parent.Checked = isChecked;
                 SelectParents(node.Parent, isChecked);
@@ -206,6 +245,7 @@ namespace HelpDesk_Utilities {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e) {
+
             if(updatingTreeView) 
                 return;
             updatingTreeView = true;
