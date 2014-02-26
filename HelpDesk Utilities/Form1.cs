@@ -89,7 +89,7 @@ namespace HelpDesk_Utilities {
             DirectoryNotFoundException error = e.Result as DirectoryNotFoundException;
 
             if (e.Result is DirectoryNotFoundException) {
-                Logger.Log("Script did not run successfully: " + error.Message, Color.Red, true);
+                Logger.Log("Script did not run successfully: " + error.Message + "\n", Color.Red, true);
             }
             else {
                 Logger.Log("Finished script " + e.Result.ToString() + ".\n", Color.Black, true);
@@ -98,7 +98,7 @@ namespace HelpDesk_Utilities {
             TasksRun++;
 
             if (TaskCount != 0 && TasksRun == TaskCount) {
-                    Logger.Log("Done with fixes!\n", Color.Green, true);
+                    Logger.Log("Done with fixes!\n", Color.Black, true);
                     TaskCount = TasksRun = 0;
                     button_attemptFixes.BeginInvoke(new InvokeDelegate(InvokeMethod));
             }

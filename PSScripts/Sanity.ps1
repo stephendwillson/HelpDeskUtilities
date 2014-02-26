@@ -1,4 +1,6 @@
-﻿Start-Process "mspaint"
+﻿Set-StrictMode -Version Latest
+
+Start-Process "mspaint"
 
 Start-Sleep -s 4
 

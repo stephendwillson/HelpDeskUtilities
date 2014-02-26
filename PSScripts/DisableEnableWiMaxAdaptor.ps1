@@ -1,4 +1,6 @@
-﻿$adaptorName = "*WiMax*"
+﻿Set-StrictMode -Version Latest
+
+$adaptorName = "*WiMax*"
 
 $adaptor = Get-WmiObject -Class Win32_NetworkAdapter | Where-Object {$_.Name -like $adaptorName}
 

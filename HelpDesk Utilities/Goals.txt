@@ -4,7 +4,7 @@
 
 Networking
 	General
-		Hardware Switch Enabled
+		May not be doable! - Hardware Switch Enabled
 			Make sure this is on before doing anything else
 		Validate IP
 				10.x.x.x
@@ -19,7 +19,6 @@ Networking
 			DHCP
 			DNS
 	WiFi
-		NEEDS TO BE FIXED, PARTIALLY IMPLEMENTED: Check for active profiles - should be "NMU" at the HelpDesk for testing
 		Windows 7
 			Validate software RF-kill disabled
 		Windows 8
@@ -56,7 +55,7 @@ General/Other
 		Windows = run slmgr.vbs /ipk 
 	Quick reboot
 	Run Windows update
-	CCleaner
+	CCleaner - PARTIALLY IMPLEMENTED, MUST BE MADE MORE ROBUST TO HANDLE DYNAMIC PATH/FILENAMES
 	Validate current/max battery capacity
 	Tools involving reboot - doable or not?
 		Boot into Linux

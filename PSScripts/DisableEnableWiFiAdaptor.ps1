@@ -1,6 +1,6 @@
-﻿#Usage: Write-Error "Sample error text"
+﻿Set-StrictMode -Version Latest
 
-
+#Usage: Write-Error "Sample error text"
 
 $adaptorName = "*6250 AGN*"
 
