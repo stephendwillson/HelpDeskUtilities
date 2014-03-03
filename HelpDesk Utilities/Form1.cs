@@ -32,9 +32,9 @@ namespace HelpDesk_Utilities {
         }
 
         private string scriptDirectory =
-            //Application.StartupPath + @"\PSScripts\"; //USE THIS FOR RELEASE BUILDS
+            Application.StartupPath + @"\PSScripts\"; //USE THIS FOR RELEASE BUILDS
             //@"C:\Users\aramirez\Documents\GitHub\HelpDeskUtilities\PSScripts\"; //DEBUG BUILD
-            @"C:\Users\swillson\Documents\Visual Studio 2012\Projects\HelpDeskUtilities\PSScripts\"; //DEBUG BUILD
+            //@"C:\Users\swillson\Documents\Visual Studio 2012\Projects\HelpDeskUtilities\PSScripts\"; //DEBUG BUILD
 
         #endregion
        
@@ -203,7 +203,7 @@ namespace HelpDesk_Utilities {
             }
             catch (Exception ex) {
                 isScriptRunning = false;
-                return "Exception caught while invoking Powershell script: " + ex.Message.ToString();
+                return "Exception caught while invoking Powershell script: " + ex.Message.ToString() + "\n";
             }
         }
         #endregion

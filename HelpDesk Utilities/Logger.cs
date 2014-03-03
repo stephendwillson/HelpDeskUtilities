@@ -23,11 +23,16 @@ namespace HelpDesk_Utilities {
 
         public static void InvokeMethod(string logMessage, Color color, bool bold) {
 
+            string time = DateTime.Now.ToString() + ": ";
+
+            //always bold date/time
+            form.richTextBox_logWindow.SelectionFont = new Font(form.richTextBox_logWindow.Font, FontStyle.Bold);
+            form.richTextBox_logWindow.AppendText(time);
+
+            //switch to selected font style/color
             form.richTextBox_logWindow.SelectionFont = new Font(form.richTextBox_logWindow.Font, bold ? FontStyle.Bold : FontStyle.Regular);
             form.richTextBox_logWindow.SelectionColor = color;
-
-            string time = DateTime.Now.ToString() + ": ";
-            form.richTextBox_logWindow.AppendText(time + logMessage + Environment.NewLine);
+            form.richTextBox_logWindow.AppendText(logMessage + Environment.NewLine);
 
             //autoscroll to bottom of text
             form.richTextBox_logWindow.SelectionStart = form.richTextBox_logWindow.Text.Length;

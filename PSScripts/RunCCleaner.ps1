@@ -4,13 +4,24 @@
 #It's not sustainable to expect someone to edit each of these scripts to reflect every change in
 #file name or path.
 
+#Call correct version of CCleaner directly - otherwise, waiting for process to exist does not function correctly (see CCleaner documentation)
+If (($ENV:Processor_Architecture -eq "x86" -and (Test-Path env:PROCESSOR_ARCHITEW6432)) -or ($ENV:Processor_Architecture -eq "AMD64")) {
+    $ccleanerExeName = 'CCleaner64.exe'
+}
+ElseIf ($ENV:Processor_Architecture -eq 'x86')
+{
+    $ccleanerExeName = 'CCleaner.exe'
+}
+Else {
+    Write-Error "Unable to determine CPU architecture! Exiting script."
+    Break
+}
 
-
-$ccleanerExeName = "CCleaner.exe"
-$ccleanerExePath = "Program Files\CCleaner"
+$ccleanerExePath = 'Programs and Files\Cleaning and Virus Removal\CCleaner'
+$argumentList = '/auto'
 
 #Get script path minus script name
-$scriptPath = Split-Path -Parent -Path $MyInvocation.MyCommand.Definition
+$scriptPath = Get-Location
 
 #Get top level root directory for script--just drive letter (D:, C:, etc.)
 $scriptRoot = ($scriptPath -split '\\')[0]
@@ -24,4 +35,6 @@ $ccleaner = Get-ChildItem -Path $ccleanerFullPath -Recurse -Filter $ccleanerExeN
 #Build file path for CCleaner executable ("DriverLetter:\path\executable.exe")
 $ccleaner = Join-Path ($ccleanerFullPath) $ccleaner
 
-start $ccleaner /auto
+#Start CCleaner and wait for exit before continuing
+$p = [System.Diagnostics.Process]::Start($ccleaner,$argumentList)
+$p.WaitForExit()

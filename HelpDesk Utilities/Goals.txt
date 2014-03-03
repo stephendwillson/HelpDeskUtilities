@@ -19,6 +19,8 @@ Networking
 			DHCP
 			DNS
 	WiFi
+		Add profile
+			Delete profile first
 		Windows 7
 			Validate software RF-kill disabled
 		Windows 8
