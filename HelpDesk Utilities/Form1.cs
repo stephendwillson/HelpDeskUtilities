@@ -149,7 +149,7 @@ namespace HelpDesk_Utilities {
 
                 if (node.Checked && node.Tag != null) {
                     while (scriptRunner.IsBusy) ;
-                    Logger.Log("Beginning script " + node.Tag + ".\n", Color.Black, true);
+                    Logger.Log("Beginning script " + node.Tag + ".", Color.Black, true);
                     scriptRunner.RunWorkerAsync(node.Tag);
                 }
 

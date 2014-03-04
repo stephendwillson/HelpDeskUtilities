@@ -35,6 +35,6 @@ using System.Runtime.InteropServices;
 // Convention for this project: 
 //      AssemblyVersion/AssemblyFileVersion [major.minor.revision.build]
 //      AssemblyInformationalVersion [major.minor customer_description_as_string]
-[assembly: AssemblyVersion("1.1.0.*")]
-[assembly: AssemblyFileVersion("1.1.0.*")]
-[assembly: AssemblyInformationalVersion("1.1 Alpha")]
+[assembly: AssemblyVersion("1.2.0.*")]
+[assembly: AssemblyFileVersion("1.2.0.*")]
+[assembly: AssemblyInformationalVersion("1.2 Beta")]

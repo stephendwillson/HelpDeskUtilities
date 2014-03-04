@@ -44,13 +44,15 @@
             treeNode5,
             treeNode7,
             treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("CCleaner");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Malware", new System.Windows.Forms.TreeNode[] {
-            treeNode12});
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("General/Other");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Run MSPaint");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Sanity Node", new System.Windows.Forms.TreeNode[] {
-            treeNode15});
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Run RKill");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Run CCleaner");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Malware", new System.Windows.Forms.TreeNode[] {
+            treeNode12,
+            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("General/Other");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Run MSPaint");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Sanity Node", new System.Windows.Forms.TreeNode[] {
+            treeNode16});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -100,22 +102,25 @@
             treeNode11.Name = "Node0";
             treeNode11.Text = "Network Issues";
             treeNode12.Name = "Node0";
-            treeNode12.Tag = "RunCCleaner.ps1";
-            treeNode12.Text = "CCleaner";
+            treeNode12.Tag = "RunRKill.ps1";
+            treeNode12.Text = "Run RKill";
             treeNode13.Name = "Node0";
-            treeNode13.Text = "Malware";
-            treeNode14.Name = "Node1";
-            treeNode14.Text = "General/Other";
-            treeNode15.Name = "Node6";
-            treeNode15.Tag = "MSPaint.ps1";
-            treeNode15.Text = "Run MSPaint";
-            treeNode16.Name = "Node4";
-            treeNode16.Text = "Sanity Node";
+            treeNode13.Tag = "RunCCleaner.ps1";
+            treeNode13.Text = "Run CCleaner";
+            treeNode14.Name = "Node0";
+            treeNode14.Text = "Malware";
+            treeNode15.Name = "Node1";
+            treeNode15.Text = "General/Other";
+            treeNode16.Name = "Node6";
+            treeNode16.Tag = "MSPaint.ps1";
+            treeNode16.Text = "Run MSPaint";
+            treeNode17.Name = "Node4";
+            treeNode17.Text = "Sanity Node";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode11,
-            treeNode13,
             treeNode14,
-            treeNode16});
+            treeNode15,
+            treeNode17});
             this.treeView1.Size = new System.Drawing.Size(270, 329);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
