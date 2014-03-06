@@ -29,30 +29,29 @@
             treeNode1,
             treeNode2});
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("[Dis/En]able WiMax Adaptor");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("WiMax", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("[Dis/En]able Ethernet Adaptor");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Ethernet", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Reset TCP/IP Stack");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Reset Winsock Stack");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("General", new System.Windows.Forms.TreeNode[] {
-            treeNode8,
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Network Issues", new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode5,
-            treeNode7,
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Reset WiMax Profiles");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("WiMax", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("[Dis/En]able Ethernet Adaptor");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Ethernet", new System.Windows.Forms.TreeNode[] {
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Reset TCP/IP Stack");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Reset Winsock Stack");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("General", new System.Windows.Forms.TreeNode[] {
+            treeNode9,
             treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Run RKill");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Run CCleaner");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Malware", new System.Windows.Forms.TreeNode[] {
-            treeNode12,
-            treeNode13});
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("General/Other");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Run MSPaint");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Sanity Node", new System.Windows.Forms.TreeNode[] {
-            treeNode16});
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Network Issues", new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode6,
+            treeNode8,
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Run RKill");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Run CCleaner");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Malware", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode14});
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("General/Other");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -84,43 +83,40 @@
             treeNode4.Name = "Node0";
             treeNode4.Tag = "DisableEnableWiMaxAdaptor.ps1";
             treeNode4.Text = "[Dis/En]able WiMax Adaptor";
-            treeNode5.Name = "Node2";
-            treeNode5.Text = "WiMax";
-            treeNode6.Name = "Node0";
-            treeNode6.Tag = "DisableEnableEthernetAdaptor.ps1";
-            treeNode6.Text = "[Dis/En]able Ethernet Adaptor";
-            treeNode7.Name = "Node2";
-            treeNode7.Text = "Ethernet";
-            treeNode8.Name = "Node8";
-            treeNode8.Tag = "ResetTCPIPStack.ps1";
-            treeNode8.Text = "Reset TCP/IP Stack";
-            treeNode9.Name = "Node7";
-            treeNode9.Tag = "ResetWinsockStack.ps1";
-            treeNode9.Text = "Reset Winsock Stack";
-            treeNode10.Name = "Node0";
-            treeNode10.Text = "General";
+            treeNode5.Name = "Node0";
+            treeNode5.Tag = "ResetWiMaxProfiles.ps1";
+            treeNode5.Text = "Reset WiMax Profiles";
+            treeNode6.Name = "Node2";
+            treeNode6.Text = "WiMax";
+            treeNode7.Name = "Node0";
+            treeNode7.Tag = "DisableEnableEthernetAdaptor.ps1";
+            treeNode7.Text = "[Dis/En]able Ethernet Adaptor";
+            treeNode8.Name = "Node2";
+            treeNode8.Text = "Ethernet";
+            treeNode9.Name = "Node8";
+            treeNode9.Tag = "ResetTCPIPStack.ps1";
+            treeNode9.Text = "Reset TCP/IP Stack";
+            treeNode10.Name = "Node7";
+            treeNode10.Tag = "ResetWinsockStack.ps1";
+            treeNode10.Text = "Reset Winsock Stack";
             treeNode11.Name = "Node0";
-            treeNode11.Text = "Network Issues";
+            treeNode11.Text = "General";
             treeNode12.Name = "Node0";
-            treeNode12.Tag = "RunRKill.ps1";
-            treeNode12.Text = "Run RKill";
+            treeNode12.Text = "Network Issues";
             treeNode13.Name = "Node0";
-            treeNode13.Tag = "RunCCleaner.ps1";
-            treeNode13.Text = "Run CCleaner";
+            treeNode13.Tag = "RunRKill.ps1";
+            treeNode13.Text = "Run RKill";
             treeNode14.Name = "Node0";
-            treeNode14.Text = "Malware";
-            treeNode15.Name = "Node1";
-            treeNode15.Text = "General/Other";
-            treeNode16.Name = "Node6";
-            treeNode16.Tag = "MSPaint.ps1";
-            treeNode16.Text = "Run MSPaint";
-            treeNode17.Name = "Node4";
-            treeNode17.Text = "Sanity Node";
+            treeNode14.Tag = "RunCCleaner.ps1";
+            treeNode14.Text = "Run CCleaner";
+            treeNode15.Name = "Node0";
+            treeNode15.Text = "Malware";
+            treeNode16.Name = "Node1";
+            treeNode16.Text = "General/Other";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode14,
+            treeNode12,
             treeNode15,
-            treeNode17});
+            treeNode16});
             this.treeView1.Size = new System.Drawing.Size(270, 329);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);

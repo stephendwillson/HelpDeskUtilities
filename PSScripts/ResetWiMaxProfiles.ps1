@@ -1,11 +1,13 @@
-﻿Set-StrictMode -Version Latest
-
-#Needs work on getting exit code from AutoIt script correctly
+﻿#Bug in the latest version of Powershell engine prevents StrictMode from being usable if $LASTEXITCODE is used.
+#$LASTEXITCODE is wrapped in a script that doesn't declare the variable first, so on execution, if StrictMode 
+#is enabled, an exception is thrown. Must choose one or the other--I chose StrictMode.
+Set-StrictMode -Version Latest
 
 #region Globals
 $autoItExeName = "ResetWiMaxProfiles.exe"
 $autoItFolderName = "AutoItScripts"
 $argumentList = " "
+$resetExitCodeFilename = "C:\reset"
 #endregion
 
 $scriptPath = Get-Location
@@ -16,13 +18,9 @@ $autoItExe = Join-Path ($scriptPath) $autoItExeName
 
 Start-Process $autoItExe -Wait
 
-echo .
-echo .
-echo .
-echo $LASTEXITCODE
-If ($LASTEXITCODE -eq 1) {
-    Write-Error "Failed to reset profiles!"
-    break
-}
-Else {
+#Workaround to a bug - exit code from AutoIt executable is written to a file
+$exitCode = [System.IO.File]::ReadAllText($resetExitCodeFilename)
+If ($exitCode -NotMatch "0") {
+    Write-Error "Either exit code file does not exist or profiles were not removed successfully!"
+    Remove-Item $resetExitCodeFilename
 }
