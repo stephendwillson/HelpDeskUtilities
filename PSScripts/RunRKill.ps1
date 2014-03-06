@@ -1,9 +1,11 @@
 ﻿Set-StrictMode -Version Latest
 
+#region Globals
 $rKillExeName = 'rkill.exe'
 $rKillExePath = 'Programs and Files\Cleaning and Virus Removal\rKill'
 $rKillLocal = 'C:\rkill.com'
 $argumentList = '-s'
+#endregion
 
 #Get script path minus script name
 $scriptPath = Get-Location

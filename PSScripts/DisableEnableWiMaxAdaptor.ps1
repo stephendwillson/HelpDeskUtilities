@@ -1,6 +1,8 @@
 ﻿Set-StrictMode -Version Latest
 
+#region Globals
 $adaptorName = "*WiMax*"
+#endregion
 
 $adaptor = Get-WmiObject -Class Win32_NetworkAdapter | Where-Object {$_.Name -like $adaptorName}
 

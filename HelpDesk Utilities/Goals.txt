@@ -25,7 +25,7 @@ Networking
 			Validate Airplane Mode
 	WiMax
 		AutoIT Scripts
-			Reset all profiles back to default
+			Reset all profiles back to default - COMPLETE, but still needs work on the Powershell side to understand exit codes
 
 	Ethernet
 

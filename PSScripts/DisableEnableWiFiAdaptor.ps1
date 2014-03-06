@@ -2,7 +2,9 @@
 
 #Usage: Write-Error "Sample error text"
 
+#region Globals
 $adaptorName = "*6250 AGN*"
+#endregion
 
 $adaptor = Get-WmiObject -Class Win32_NetworkAdapter | Where-Object {$_.Name -like $adaptorName}
 

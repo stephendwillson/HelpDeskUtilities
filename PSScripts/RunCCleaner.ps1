@@ -4,6 +4,7 @@
 #It's not sustainable to expect someone to edit each of these scripts to reflect every change in
 #file name or path.
 
+#region Globals
 #Call correct version of CCleaner directly - otherwise, waiting for process to exist does not function correctly (see CCleaner documentation)
 If (($ENV:Processor_Architecture -eq "x86" -and (Test-Path env:PROCESSOR_ARCHITEW6432)) -or ($ENV:Processor_Architecture -eq "AMD64")) {
     $ccleanerExeName = 'CCleaner64.exe'
@@ -19,6 +20,7 @@ Else {
 
 $ccleanerExePath = 'Programs and Files\Cleaning and Virus Removal\CCleaner'
 $argumentList = '/auto'
+#endregion
 
 #Get script path minus script name
 $scriptPath = Get-Location

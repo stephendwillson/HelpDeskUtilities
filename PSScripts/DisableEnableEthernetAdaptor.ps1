@@ -1,9 +1,9 @@
 ﻿Set-StrictMode -Version Latest
 
-#Usage: Write-Error "Sample error text"
-
+#region Globals
 $adaptorName = "*82579LM*"
 $adaptorNameTwist = "*PCIe GBE*"
+#endregion
 
 $adaptor = Get-WmiObject -Class Win32_NetworkAdapter | Where-Object {$_.Name -like $adaptorName}
 $adaptorTwist = Get-WmiObject -Class Win32_NetworkAdapter | Where-Object {$_.Name -like $adaptorNameTwist}
@@ -24,4 +24,3 @@ ElseIf($adaptorTwist) {
 Else {
     Write-Error "Network adaptor matching the pattern " + $adaptorName + " not found."
 }
-
