@@ -1,5 +1,5 @@
 ﻿C# Form goals
-
+	CPU usage
 
 
 Networking
@@ -25,7 +25,7 @@ Networking
 			Validate Airplane Mode
 	WiMax
 		AutoIT Scripts
-			Reset all profiles back to default - COMPLETE, but still needs work on the Powershell side to understand exit codes
+			Reset all profiles back to default - TURN OFF WiFi/WiMax from WiMax app before continuing
 
 	Ethernet
 

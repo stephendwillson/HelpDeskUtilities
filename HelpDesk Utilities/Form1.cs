@@ -42,6 +42,7 @@ namespace HelpDesk_Utilities {
             InitializeComponent();
 
             Logger log = new Logger(this);
+            AppStats appStats = new AppStats(label_memoryUsage);
             
             scriptRunner.DoWork += scriptRunner_DoWork;
             scriptRunner.RunWorkerCompleted += scriptRunner_RunWorkerCompleted;
@@ -252,6 +253,18 @@ namespace HelpDesk_Utilities {
             CheckChildren_ParentSelected(e.Node, e.Node.Checked);
             SelectParents(e.Node, e.Node.Checked);
             updatingTreeView = false;
+        }
+
+        /// <summary>
+        /// On click, clears all checkboxes in TreeView.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e) {
+            
+            foreach (TreeNode node in treeView1.Nodes) {
+                node.Checked = false;
+            }
         }
         #endregion
 

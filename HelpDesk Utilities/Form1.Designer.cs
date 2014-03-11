@@ -51,7 +51,6 @@
             System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Malware", new System.Windows.Forms.TreeNode[] {
             treeNode13,
             treeNode14});
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("General/Other");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -62,6 +61,8 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_attemptFixes = new System.Windows.Forms.Button();
             this.richTextBox_logWindow = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label_memoryUsage = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,13 +112,10 @@
             treeNode14.Text = "Run CCleaner";
             treeNode15.Name = "Node0";
             treeNode15.Text = "Malware";
-            treeNode16.Name = "Node1";
-            treeNode16.Text = "General/Other";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode12,
-            treeNode15,
-            treeNode16});
-            this.treeView1.Size = new System.Drawing.Size(270, 329);
+            treeNode15});
+            this.treeView1.Size = new System.Drawing.Size(270, 307);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
             // 
@@ -173,7 +171,7 @@
             // button_attemptFixes
             // 
             this.button_attemptFixes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_attemptFixes.Location = new System.Drawing.Point(12, 362);
+            this.button_attemptFixes.Location = new System.Drawing.Point(12, 340);
             this.button_attemptFixes.Name = "button_attemptFixes";
             this.button_attemptFixes.Size = new System.Drawing.Size(270, 28);
             this.button_attemptFixes.TabIndex = 2;
@@ -188,15 +186,37 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox_logWindow.Location = new System.Drawing.Point(289, 27);
             this.richTextBox_logWindow.Name = "richTextBox_logWindow";
-            this.richTextBox_logWindow.Size = new System.Drawing.Size(385, 363);
+            this.richTextBox_logWindow.Size = new System.Drawing.Size(385, 359);
             this.richTextBox_logWindow.TabIndex = 3;
             this.richTextBox_logWindow.Text = "";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(12, 374);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(270, 28);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Clear All Checkboxes";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label_memoryUsage
+            // 
+            this.label_memoryUsage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_memoryUsage.AutoSize = true;
+            this.label_memoryUsage.Location = new System.Drawing.Point(288, 389);
+            this.label_memoryUsage.Name = "label_memoryUsage";
+            this.label_memoryUsage.Size = new System.Drawing.Size(0, 13);
+            this.label_memoryUsage.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 402);
+            this.ClientSize = new System.Drawing.Size(686, 414);
+            this.Controls.Add(this.label_memoryUsage);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.richTextBox_logWindow);
             this.Controls.Add(this.button_attemptFixes);
             this.Controls.Add(this.treeView1);
@@ -223,6 +243,8 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         public System.Windows.Forms.RichTextBox richTextBox_logWindow;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label_memoryUsage;
     }
 }
 
