@@ -108,14 +108,14 @@ namespace HelpDesk_Utilities {
 
         #region AttemptFixes
         /// <summary>
-        /// When user clicks "Fix Me" button, spawn a new thread and let it handle
-        /// all of the script calling in RunCheckedItems
+        /// When user clicks "Fix Me" button, spawn a new thread and let it handle the script calling in RunCheckedItems.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button_attemptFixesClick(object sender, EventArgs e) {
 
             button_attemptFixes.Enabled = false;
+            button_clearAllCheckboxes.Enabled = false;
 
             ParameterizedThreadStart start = new ParameterizedThreadStart(RunCheckedItems);
             Thread thread = new Thread(start);
@@ -125,6 +125,7 @@ namespace HelpDesk_Utilities {
         public void InvokeMethod() {
 
             button_attemptFixes.Enabled = true;
+            button_clearAllCheckboxes.Enabled = true;
         }
 
         /// <summary>

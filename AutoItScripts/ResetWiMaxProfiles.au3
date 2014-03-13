@@ -31,14 +31,18 @@ Local $hWnd = WinWait($wimaxWindowTitle,"",$defaultTimeout)
 If $hWnd == 0 Then
    ExitScript(1)
 EndIf
-Sleep(3000)
+Sleep(500)
 
 ;Activate the window (bring to foreground)
 WinActivate($hWnd)
-Sleep(1000)
+Sleep(500)
 
 ;Open up Options menu, select third item down (hopefully "Advanced"!) and hit Enter
-ControlClick($hWnd,"",$optionsButtonText)
+ControlFocus($wimaxWindowTitle,"Options","[NAME:BtnBoxOptionsWiFiHelp]")
+Sleep(500)
+Send("{SPACE}")
+Sleep(500)
+
 For $i = 1 To 3 Step 1
    Send("{DOWN}")
    Sleep(500)

@@ -38,19 +38,21 @@
             treeNode7});
             System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Reset TCP/IP Stack");
             System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Reset Winsock Stack");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("General", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Validate IPv4 Address");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("General", new System.Windows.Forms.TreeNode[] {
             treeNode9,
-            treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Network Issues", new System.Windows.Forms.TreeNode[] {
+            treeNode10,
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Network Issues", new System.Windows.Forms.TreeNode[] {
             treeNode3,
             treeNode6,
             treeNode8,
-            treeNode11});
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Run RKill");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Run CCleaner");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Malware", new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode14});
+            treeNode12});
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Run RKill");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Run CCleaner");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Malware", new System.Windows.Forms.TreeNode[] {
+            treeNode14,
+            treeNode15});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -61,7 +63,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_attemptFixes = new System.Windows.Forms.Button();
             this.richTextBox_logWindow = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_clearAllCheckboxes = new System.Windows.Forms.Button();
             this.label_memoryUsage = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -101,20 +103,23 @@
             treeNode10.Tag = "ResetWinsockStack.ps1";
             treeNode10.Text = "Reset Winsock Stack";
             treeNode11.Name = "Node0";
-            treeNode11.Text = "General";
+            treeNode11.Tag = "ValidateIPv4Address.ps1";
+            treeNode11.Text = "Validate IPv4 Address";
             treeNode12.Name = "Node0";
-            treeNode12.Text = "Network Issues";
+            treeNode12.Text = "General";
             treeNode13.Name = "Node0";
-            treeNode13.Tag = "RunRKill.ps1";
-            treeNode13.Text = "Run RKill";
+            treeNode13.Text = "Network Issues";
             treeNode14.Name = "Node0";
-            treeNode14.Tag = "RunCCleaner.ps1";
-            treeNode14.Text = "Run CCleaner";
+            treeNode14.Tag = "RunRKill.ps1";
+            treeNode14.Text = "Run RKill";
             treeNode15.Name = "Node0";
-            treeNode15.Text = "Malware";
+            treeNode15.Tag = "RunCCleaner.ps1";
+            treeNode15.Text = "Run CCleaner";
+            treeNode16.Name = "Node0";
+            treeNode16.Text = "Malware";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12,
-            treeNode15});
+            treeNode13,
+            treeNode16});
             this.treeView1.Size = new System.Drawing.Size(270, 307);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
@@ -190,16 +195,16 @@
             this.richTextBox_logWindow.TabIndex = 3;
             this.richTextBox_logWindow.Text = "";
             // 
-            // button1
+            // button_clearAllCheckboxes
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(12, 374);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(270, 28);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Clear All Checkboxes";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_clearAllCheckboxes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_clearAllCheckboxes.Location = new System.Drawing.Point(12, 374);
+            this.button_clearAllCheckboxes.Name = "button_clearAllCheckboxes";
+            this.button_clearAllCheckboxes.Size = new System.Drawing.Size(270, 28);
+            this.button_clearAllCheckboxes.TabIndex = 4;
+            this.button_clearAllCheckboxes.Text = "Clear All Checkboxes";
+            this.button_clearAllCheckboxes.UseVisualStyleBackColor = true;
+            this.button_clearAllCheckboxes.Click += new System.EventHandler(this.button1_Click);
             // 
             // label_memoryUsage
             // 
@@ -216,7 +221,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 414);
             this.Controls.Add(this.label_memoryUsage);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_clearAllCheckboxes);
             this.Controls.Add(this.richTextBox_logWindow);
             this.Controls.Add(this.button_attemptFixes);
             this.Controls.Add(this.treeView1);
@@ -243,7 +248,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         public System.Windows.Forms.RichTextBox richTextBox_logWindow;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_clearAllCheckboxes;
         private System.Windows.Forms.Label label_memoryUsage;
     }
 }
