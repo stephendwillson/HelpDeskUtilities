@@ -53,6 +53,9 @@
             System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Malware", new System.Windows.Forms.TreeNode[] {
             treeNode14,
             treeNode15});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Remove Excess WRT Logs");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("General/Other", new System.Windows.Forms.TreeNode[] {
+            treeNode17});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -117,9 +120,15 @@
             treeNode15.Text = "Run CCleaner";
             treeNode16.Name = "Node0";
             treeNode16.Text = "Malware";
+            treeNode17.Name = "Node1";
+            treeNode17.Tag = "CheckWRTLogDirs.ps1";
+            treeNode17.Text = "Remove Excess WRT Logs";
+            treeNode18.Name = "Node0";
+            treeNode18.Text = "General/Other";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode13,
-            treeNode16});
+            treeNode16,
+            treeNode18});
             this.treeView1.Size = new System.Drawing.Size(270, 307);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
