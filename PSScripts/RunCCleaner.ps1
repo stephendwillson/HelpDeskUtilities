@@ -14,7 +14,9 @@ ElseIf ($ENV:Processor_Architecture -eq 'x86')
     $ccleanerExeName = 'CCleaner.exe'
 }
 Else {
-    Write-Error "Unable to determine CPU architecture! Exiting script."
+    $color = 'Red'
+    $outputString = "Unable to determine CPU architecture! Exiting script."
+    [HelpDesk_Utilities.Logger]::Log($outputString,[System.Drawing.Color]$color,1)
     Break
 }
 

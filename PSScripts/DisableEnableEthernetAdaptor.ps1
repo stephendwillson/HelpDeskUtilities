@@ -22,5 +22,7 @@ ElseIf($adaptorTwist) {
 
 #If for some reason the adaptor can't be found, write an error and break from script
 Else {
-    Write-Error "Network adaptor matching the pattern " + $adaptorName + " not found."
+    $outputString = "Network adaptor matching the pattern " + $adaptorName + " or " + $adaptorNameTwist + " not found."
+    $color = 'Red'
+    [HelpDesk_Utilities.Logger]::Log($outputString,[System.Drawing.Color]$color,1)
 }

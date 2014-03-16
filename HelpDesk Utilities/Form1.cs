@@ -54,12 +54,13 @@ namespace HelpDesk_Utilities {
         /// it along to RunScript(), which does the actual heavy lifting.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">e.Argument.ToString will be the script name (script.ps1)</param>
+        /// <param name="e">e.Argument is Object[node.Tag,node.Text]</param>
         private void scriptRunner_DoWork(object sender, DoWorkEventArgs e) {
 
             string scriptPath = "";
             try {
-                scriptPath = scriptDirectory + e.Argument.ToString();
+                Object[] myArray = e.Argument as Object[];
+                scriptPath = scriptDirectory + myArray[0].ToString();
 
                 StreamReader myFile =
                     new StreamReader(scriptPath);
@@ -72,7 +73,7 @@ namespace HelpDesk_Utilities {
                 if (!String.IsNullOrWhiteSpace(result))
                     Logger.Log(result,Color.Black,false);
 
-                e.Result = e.Argument.ToString();
+                e.Result = myArray[1].ToString();
             }
             catch (DirectoryNotFoundException ex) {
                 e.Result = ex;
@@ -84,7 +85,7 @@ namespace HelpDesk_Utilities {
         /// log a notification in the RichTextBox.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e">e.Result.ToString() will be the Tag associated with any given script, unless an exception is caught in doWork</param>
+        /// <param name="e">e.Result.ToString() will be the Text associated with any given script</param>
         private void scriptRunner_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
 
             DirectoryNotFoundException error = e.Result as DirectoryNotFoundException;
@@ -93,7 +94,7 @@ namespace HelpDesk_Utilities {
                 Logger.Log("Script did not run successfully: " + error.Message + "\n", Color.Red, true);
             }
             else {
-                Logger.Log("Finished script " + e.Result.ToString() + ".\n", Color.Black, true);
+                Logger.Log("Finished task " + e.Result.ToString() + ".\n", Color.Black, true);
             }
 
             TasksRun++;
@@ -151,8 +152,8 @@ namespace HelpDesk_Utilities {
 
                 if (node.Checked && node.Tag != null) {
                     while (scriptRunner.IsBusy) ;
-                    Logger.Log("Beginning script " + node.Tag + ".", Color.Black, true);
-                    scriptRunner.RunWorkerAsync(node.Tag);
+                    Logger.Log("Beginning task " + node.Text + ".", Color.Black, true);
+                    scriptRunner.RunWorkerAsync(new Object[]{node.Tag,node.Text});
                 }
 
                 RunCheckedItems(node.Nodes);

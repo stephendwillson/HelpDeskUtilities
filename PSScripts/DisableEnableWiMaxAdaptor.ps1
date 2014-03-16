@@ -8,7 +8,9 @@ $adaptor = Get-WmiObject -Class Win32_NetworkAdapter | Where-Object {$_.Name -li
 
 #If for some reason the adaptor can't be found, write an error and break from script
 If(!$adaptor) {
-    Write-Error "Network adaptor matching the pattern " + $adaptorName + " not found."
+    $outputString = "Network adaptor matching the pattern " + $adaptorName + " not found."
+    $color = 'Red'
+    [HelpDesk_Utilities.Logger]::Log($outputString,[System.Drawing.Color]$color,1)
     Break
 }
 

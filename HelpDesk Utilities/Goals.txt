@@ -40,8 +40,6 @@ General/Other
 			90% full/10% free space, look into KAV/WRT folders to check size
 		Kaspersky
 			KAV created over Xmb of log files, delete them
-		Intel WRT/WiMax
-			Work out issue with printing to RichTextBox directly
 	Activate Windows/Office
 		Validate time/date
 		Office = run .vbs

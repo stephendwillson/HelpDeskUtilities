@@ -1,13 +1,10 @@
 ﻿Set-StrictMode -Version Latest
 
-#Seems to be an issue with printing like usual (Write-Output $outputString). It looks like there's a way to print directly to the RichTextBox from the C# WinForm,
-#but it's not working quite correctly. Print to textbox is working, but text is always bolded, no matter what.
-#Usage: [HelpDesk_Utilities.Logger]::Log($outputString,[System.Drawing.Color]$color,[bool]'false') where $color = 'Black'
-
 #region Globals
+$color = 'Black'
+$logDirectoryCutoffMB = 1000
 $wimaxLogDir = "C:\Program Files\Intel\WiMAX\Bin\Trace"
 $wrtLogDir = "C:\Program Files\Intel\WRT\Plugins\WiFiPlugins\Collected Data"
-$logDirectoryCutoffMB = 1000
 #endregion
 
 Function CheckWiMaxLogDir {
@@ -15,7 +12,7 @@ Function CheckWiMaxLogDir {
     #If folder doesn't exist, end the function. User likely does not have WRT installed.
     If(!(Test-Path $wimaxLogDir)) {
         $outputString = "Directory " + $wimaxLogDir + " does not exist. Continuing to next task."
-        Write-Output $outputString
+        [HelpDesk_Utilities.Logger]::Log($outputString,[System.Drawing.Color]$color,0)
         break
     }
 
@@ -26,12 +23,12 @@ Function CheckWiMaxLogDir {
     #If the directory size is greater than the cutoff size (in MB), delete all subdirectories.
     If($directorySize -ge $logDirectoryCutoffMB) {
         $outputString = "Directory " + $wimaxLogDir + " is greater than " + $logDirectoryCutoffMB + "MB. Deleting all subdirectories and files."
-        Write-Output $outputString
+        [HelpDesk_Utilities.Logger]::Log($outputString,[System.Drawing.Color]$color,0)
         Get-ChildItem -Force $logDirectoryCutoffMB | Remove-Item -Recurse -Force
     }
     Else {
         $outputString = "Directory " + $wimaxLogDir + " is less than " + $logDirectoryCutoffMB + "MB. Continuing to next task."
-        Write-Output $outputString
+        [HelpDesk_Utilities.Logger]::Log($outputString,[System.Drawing.Color]$color,0)
     }
 }
 
@@ -40,7 +37,7 @@ Function CheckWRTLogDir {
     #If folder doesn't exist, end the function. User likely does not have WRT installed.
     If(!(Test-Path $wrtLogDir)) {
         $outputString = "Directory " + $wrtLogDir + " does not exist. Continuing to next task."
-        Write-Output $outputString
+        [HelpDesk_Utilities.Logger]::Log($outputString,[System.Drawing.Color]$color,0)
         break
     }
 
@@ -51,12 +48,12 @@ Function CheckWRTLogDir {
     #If the directory size is greater than the cutoff size (in MB), delete all subdirectories.
     If($directorySize -ge $logDirectoryCutoffMB) {
         $outputString = "Directory " + $wrtLogDir + " is greater than " + $logDirectoryCutoffMB + "MB. Deleting all subdirectories and files."
-        Write-Output $outputString
+        [HelpDesk_Utilities.Logger]::Log($outputString,[System.Drawing.Color]$color,0)
         Get-ChildItem -Force $logDirectoryCutoffMB | Remove-Item -Recurse -Force
     }
     Else {
         $outputString = "Directory " + $wrtLogDir + " is less than " + $logDirectoryCutoffMB + "MB. Continuing to next task."
-        [console]::WriteLine($outputString)
+        [HelpDesk_Utilities.Logger]::Log($outputString,[System.Drawing.Color]$color,0)
     }
 }
 

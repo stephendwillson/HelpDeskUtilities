@@ -18,7 +18,8 @@ namespace HelpDesk_Utilities {
         /// <param name="logMessage">Message to append to log</param>
         public static void Log(string logMessage,Color color,bool bold) {
 
-            form.richTextBox_logWindow.BeginInvoke(new InvokeDelegate(InvokeMethod), new object[] { logMessage, color, bold });
+            if(!String.IsNullOrWhiteSpace(logMessage))
+                form.richTextBox_logWindow.BeginInvoke(new InvokeDelegate(InvokeMethod), new object[] { logMessage, color, bold });
         }
 
         public static void InvokeMethod(string logMessage, Color color, bool bold) {

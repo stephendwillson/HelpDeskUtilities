@@ -21,6 +21,7 @@ Start-Process $autoItExe -Wait
 #Workaround to a bug - exit code from AutoIt executable is written to a file
 $exitCode = [System.IO.File]::ReadAllText($resetExitCodeFilename)
 If ($exitCode -NotMatch "0") {
-    Write-Error "Either exit code file does not exist or profiles were not removed successfully!"
-    Remove-Item $resetExitCodeFilename
+    $outputString = "Either exit code file does not exist or profiles were not removed successfully!"
+    $color = 'Red'
+    [HelpDesk_Utilities.Logger]::Log($outputString,[System.Drawing.Color]$color,1)
 }
