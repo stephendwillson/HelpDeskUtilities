@@ -32,7 +32,8 @@ Malware
 			Validate networking stuffs first
 		Run Quick Scan only
 		Remove found items
-		Reboot		
+		Reboot
+	GP fixes	
 
 General/Other
 	Check for full hard drive

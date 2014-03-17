@@ -48,14 +48,16 @@
             treeNode6,
             treeNode8,
             treeNode12});
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Run RKill");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Run CCleaner");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Malware", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Reset .exe Association");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Run RKill");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Run CCleaner");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Malware", new System.Windows.Forms.TreeNode[] {
             treeNode14,
-            treeNode15});
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Remove Excess WRT Logs");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("General/Other", new System.Windows.Forms.TreeNode[] {
-            treeNode17});
+            treeNode15,
+            treeNode16});
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Remove Excess WRT Logs");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("General/Other", new System.Windows.Forms.TreeNode[] {
+            treeNode18});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -113,22 +115,25 @@
             treeNode13.Name = "Node0";
             treeNode13.Text = "Network Issues";
             treeNode14.Name = "Node0";
-            treeNode14.Tag = "RunRKill.ps1";
-            treeNode14.Text = "Run RKill";
+            treeNode14.Tag = "SetEXEAssociation.ps1";
+            treeNode14.Text = "Reset .exe Association";
             treeNode15.Name = "Node0";
-            treeNode15.Tag = "RunCCleaner.ps1";
-            treeNode15.Text = "Run CCleaner";
+            treeNode15.Tag = "RunRKill.ps1";
+            treeNode15.Text = "Run RKill";
             treeNode16.Name = "Node0";
-            treeNode16.Text = "Malware";
-            treeNode17.Name = "Node1";
-            treeNode17.Tag = "CheckWRTLogDirs.ps1";
-            treeNode17.Text = "Remove Excess WRT Logs";
-            treeNode18.Name = "Node0";
-            treeNode18.Text = "General/Other";
+            treeNode16.Tag = "RunCCleaner.ps1";
+            treeNode16.Text = "Run CCleaner";
+            treeNode17.Name = "Node0";
+            treeNode17.Text = "Malware";
+            treeNode18.Name = "Node1";
+            treeNode18.Tag = "CheckWRTLogDirs.ps1";
+            treeNode18.Text = "Remove Excess WRT Logs";
+            treeNode19.Name = "Node0";
+            treeNode19.Text = "General/Other";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode13,
-            treeNode16,
-            treeNode18});
+            treeNode17,
+            treeNode19});
             this.treeView1.Size = new System.Drawing.Size(270, 307);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
